@@ -1,0 +1,30 @@
+// import { Company } from "./entities/Company";
+// import { Employee } from "./entities/Employee";
+// import { Shift } from "./entities/Shift";
+
+// const main = async () => {
+//   const conn = await createConnection({
+//     type: "postgres",
+//     host: "localhost",
+//     port: 3306,
+//     username: "postgres",
+//     password: "postgres",
+//     database: "postgres",
+//   }).catch((error) => console.log(error));
+
+//   const app = express();
+
+//   // const connection = await createConnection();
+//   const apolloServer = new ApolloServer({
+//     schema: await buildSchema({
+//       resolvers: [EmployeeResolver],
+//       validate: false,
+//     }),
+//   });
+
+//   apolloServer.applyMiddleware();
+
+//   app.listen(4000, () => {
+//     console.log("Server has started on localhost:4000");
+//   });
+// };
