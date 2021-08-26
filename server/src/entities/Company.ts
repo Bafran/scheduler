@@ -6,12 +6,13 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  BaseEntity,
 } from "typeorm";
 import { Employee } from "./Employee";
 
 @ObjectType()
 @Entity()
-export class Company {
+export class Company extends BaseEntity {
   // Info on register
   @Field(() => ID)
   @PrimaryGeneratedColumn()

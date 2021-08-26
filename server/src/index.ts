@@ -11,6 +11,8 @@ import Redis from "ioredis";
 import session from "express-session";
 import connectRedis from "connect-redis";
 import cors from "cors";
+import { CompanyResolver } from "./resolvers/company";
+import { DepartmentResolver } from "./resolvers/department";
 
 const main = async () => {
   const RedisStore = connectRedis(session);
@@ -26,7 +28,12 @@ const main = async () => {
 
   const server = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [EmployeeResolver, ShiftResolver],
+      resolvers: [
+        EmployeeResolver,
+        ShiftResolver,
+        CompanyResolver,
+        DepartmentResolver,
+      ],
       validate: false,
     }),
     plugins: __prod__

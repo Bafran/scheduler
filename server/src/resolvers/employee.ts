@@ -9,11 +9,6 @@ import { UserResponse } from "./types/UserResponseType";
 
 @Resolver(Employee)
 export class EmployeeResolver {
-  @Query(() => String)
-  hello() {
-    return "yessir";
-  }
-
   @Query(() => Employee, { nullable: true })
   me(@Ctx() { req }: MyContext) {
     console.log(req.session.userId);
@@ -23,6 +18,20 @@ export class EmployeeResolver {
     }
 
     return Employee.findOne(req.session.userId);
+  }
+
+  @Query(() => Employee, { nullable: true })
+  async findEmployee(
+    @Arg("argument") argument: string,
+    @Arg("findBy") findBy: string
+  ) {
+    let employee: Employee | undefined;
+    if (findBy === "id") {
+      employee = await Employee.findOne({ where: { id: parseInt(argument) } });
+    } else if (findBy === "email") {
+      employee = await Employee.findOne({ where: { email: argument } });
+    }
+    return employee;
   }
 
   @Query(() => [Employee])
@@ -139,9 +148,16 @@ export class EmployeeResolver {
   @Mutation(() => UserResponse)
   async giveTitle(
     @Arg("title", () => String) title: string,
-    @Arg("id", () => Int) id: number
+    @Arg("argument", () => String) argument: string,
+    @Arg("findBy", () => String) findBy: string
   ) {
-    const employee = await Employee.findOne(id);
+    let employee;
+    if (findBy === "id") {
+      employee = await Employee.findOne({ where: { id: parseInt(argument) } });
+    } else if (findBy === "email") {
+      employee = await Employee.findOne({ where: { email: argument } });
+    }
+
     if (employee === undefined) {
       let errors = [
         {
@@ -151,13 +167,22 @@ export class EmployeeResolver {
       ];
       return { errors };
     }
-
-    await getConnection()
-      .createQueryBuilder()
-      .update(Employee)
-      .set({ title })
-      .where("id = :id", { id })
-      .execute();
+    if (findBy === "id") {
+      const id = parseInt(argument);
+      await getConnection()
+        .createQueryBuilder()
+        .update(Employee)
+        .set({ title })
+        .where("id = :id", { id })
+        .execute();
+    } else if (findBy === "email") {
+      await getConnection()
+        .createQueryBuilder()
+        .update(Employee)
+        .set({ title })
+        .where("email = :argument", { argument })
+        .execute();
+    }
 
     return true;
   }
