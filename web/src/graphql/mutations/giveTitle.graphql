@@ -1,0 +1,8 @@
+mutation GiveTitle($argument: String!, $title: String!, $findBy: String!) {
+  giveTitle(argument: $argument, title: $title, findBy: $findBy) {
+    errors {
+      field
+      message
+    }
+  }
+}

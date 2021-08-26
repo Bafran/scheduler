@@ -1,0 +1,11 @@
+query Shifts($id: Int!, $dateTime: String!) {
+  scheduledShifts(id: $id, dateTime: $dateTime) {
+    employeeId
+    startTime
+    endTime
+    employee {
+      firstName
+      lastName
+    }
+  }
+}

@@ -1,0 +1,3 @@
+mutation CompanyLogin($companyName: String!, $password: String!) {
+  companyLogin(companyName: $companyName, password: $password)
+}

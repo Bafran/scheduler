@@ -1,0 +1,7 @@
+query FindEmployee($argument: String!, $findBy: String!) {
+  findEmployee(argument: $argument, findBy: $findBy) {
+    id
+    firstName
+    lastName
+  }
+}

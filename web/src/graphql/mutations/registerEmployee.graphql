@@ -1,0 +1,8 @@
+mutation RegisterEmployee($options: RegisterCreds!) {
+  register(options: $options) {
+    errors {
+      field
+      message
+    }
+  }
+}

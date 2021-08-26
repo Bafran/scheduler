@@ -1,0 +1,6 @@
+mutation RegisterCompany($options: CompanyRegisterCreds!) {
+  registerCompany(options: $options) {
+    id
+    companyName
+  }
+}

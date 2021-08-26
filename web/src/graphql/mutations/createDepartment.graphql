@@ -1,0 +1,3 @@
+mutation CreateDepartment($departmentName: String!, $companyId: Int!) {
+  createDepartment(departmentName: $departmentName, companyId: $companyId)
+}

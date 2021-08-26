@@ -1,0 +1,11 @@
+query getShifts($id: Int!, $dateTime: String!) {
+  getShifts(id: $id, dateTime: $dateTime) {
+    firstName
+    lastName
+    shifts {
+      id
+      startTime
+      endTime
+    }
+  }
+}

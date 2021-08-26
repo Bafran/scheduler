@@ -1,0 +1,7 @@
+query MeCompany {
+  meCompany {
+    id
+    companyName
+    email
+  }
+}
