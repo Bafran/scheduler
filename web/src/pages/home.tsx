@@ -11,12 +11,13 @@ import React from "react";
 import { Layout } from "../components/Layout";
 import { Wrapper } from "../components/Wrapper";
 import { useGetShiftsQuery, useMeQuery } from "../generated/graphql";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 interface homeProps {}
 
 const Home: React.FC<homeProps> = () => {
   const { data: meData } = useMeQuery();
+  const history = useHistory();
 
   const params: any = useParams();
   console.log("Params id: " + params.id);
@@ -40,6 +41,10 @@ const Home: React.FC<homeProps> = () => {
 
   if (!data) {
     return <div>No Shift Data to report</div>;
+  }
+
+  if(!meData?.me) {
+    return <div>Not Authenticated</div>;
   }
 
   let weekdaysDict = {
