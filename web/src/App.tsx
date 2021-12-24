@@ -52,6 +52,9 @@ export const App = () => {
           <Route path="/registercompany">
             <CompanyRegister />
           </Route>
+          <Route path="/companyregister">
+            <CompanyRegister />
+          </Route>
           <Route path="/logincompany">
             <CompanyLogin />
           </Route>
