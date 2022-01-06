@@ -4,6 +4,17 @@ Hi! This scheduler project was built to be able to build employees schedules, wh
 
 This project has been revisited to touch up this GitHub page, and is currently in a (debatably) working state, but I do not intend to complete it as I have since learned far more about how I should have better designed this app, especially given that this was the first project I had done at this scale.
 
+## Full Tech Stack
+
+TypeScript
+React
+GraphQL
+Node.js
+PostgreSQL
+TypeORM
+Redis
+React Router
+
 # Goals & Accomplishments
 
 The goal of this project was to create a robust backend with sufficient authentication and scalability, with the CSS taking a backseat. I would have liked to deploy this project as well, however design using a GraphQL backend and React frontend along with Redis for user sessions made it difficult to manage with what I knew at the time.
